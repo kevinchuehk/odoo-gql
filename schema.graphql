@@ -1,0 +1,19 @@
+scalar JSON
+
+input MethodInput {
+    model: String!
+    params: [JSON]
+}
+
+type Query {
+  searchRead(input: MethodInput!): JSON
+  read(input: MethodInput): JSON
+  count(input: MethodInput): Int
+  search(input: MethodInput): JSON
+}
+
+type Mutation {
+  create(input: MethodInput): JSON
+  update(input: MethodInput): JSON
+  delete(input: MethodInput): JSON
+}
