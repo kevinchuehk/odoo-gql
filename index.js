@@ -1,3 +1,6 @@
+#!/usr/bin/env node
+
+require('dotenv').config()
 const { ApolloServer } = require("apollo-server")
 const { importSchema } = require("graphql-import")
 const typeDefs = importSchema("schema.graphql")
@@ -5,11 +8,11 @@ const resolvers = require('./src/resolvers.js')
 const Odoo = require('odoo-xmlrpc')
 
 const client = new Odoo({
-    url: process.env.ODOO_URL,
-    port: process.env.ODOO_PORT,
-    db: process.env.ODOO_DB,
-    username: process.env.ODOO_USER,
-    password: process.env.ODOO_PASSW
+    url: process.env.ODOO_URL || '',
+    port: process.env.ODOO_PORT || 8069,
+    db: process.env.ODOO_DB || '',
+    username: process.env.ODOO_USER || '',
+    password: process.env.ODOO_PASSW || ''
 })
 
 client.search = function(model, params) {

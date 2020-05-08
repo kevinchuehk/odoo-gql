@@ -1,13 +1,21 @@
 {
-  "name": "odoo-gql",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "apollo-server": "^2.13.0",
-    "graphql": "^15.0.0",
-    "graphql-import": "^1.0.2",
-    "graphql-type-json": "^0.3.1",
-    "odoo-xmlrpc": "^1.0.8"
-  }
+    "name": "odoo-gql",
+    "version": "1.0.0",
+    "main": "index.js",
+    "bin": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "dist": "pkg -t node10-linux --out-path dist . "
+    },
+    "dependencies": {
+        "apollo-server": "^2.13.0",
+        "dotenv": "^8.2.0",
+        "graphql": "^15.0.0",
+        "graphql-import": "^1.0.2",
+        "graphql-type-json": "^0.3.1",
+        "odoo-xmlrpc": "^1.0.8"
+    },
+    "devDependencies": {
+        "pkg": "^4.4.8"
+    }
 }
