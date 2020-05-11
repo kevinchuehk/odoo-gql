@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
-require('dotenv').config()
+const dotenv = require('dotenv')
 const { ApolloServer } = require("apollo-server")
-const { importSchema } = require("graphql-import")
-const typeDefs = importSchema("schema.graphql")
+const typeDefs = require("./src/schema")
 const resolvers = require('./src/resolvers.js')
 const Odoo = require('odoo-xmlrpc')
+
+dotenv.config()
 
 const client = new Odoo({
     url: process.env.ODOO_URL || '',
@@ -17,7 +18,7 @@ const client = new Odoo({
 
 client.search = function(model, params) {
     return new Promise((resolve, reject) => {
-        this.execute_kw(model, 'search', params, (err, value) => {
+        this.execute_kw(model, 'search', [params], (err, value) => {
             if (err) return reject(err)
             resolve(value)
         })
@@ -26,7 +27,7 @@ client.search = function(model, params) {
 
 client.count = function(model, params) {
     return new Promise((resolve, reject) => {
-        this.execute_kw(model, 'search_count', params, (err, value) => {
+        this.execute_kw(model, 'search_count', [params], (err, value) => {
             if (err) return reject(err)
             resolve(value)
         })
@@ -35,7 +36,7 @@ client.count = function(model, params) {
 
 client.read = function(model, params) {
     return new Promise((resolve, reject) => {
-        this.execute_kw(model, 'read', params, (err, value) => {
+        this.execute_kw(model, 'read', [params], (err, value) => {
             if (err) return reject(err)
             resolve(value)
         })
@@ -44,7 +45,7 @@ client.read = function(model, params) {
 
 client.searchRead = function(model, params) {
     return new Promise((resolve, reject) => {
-        this.execute_kw(model, 'search_read', params, (err, value) => {
+        this.execute_kw(model, 'search_read', [params], (err, value) => {
             if (err) return reject(err)
             resolve(value)
         })
@@ -53,7 +54,7 @@ client.searchRead = function(model, params) {
 
 client.create = function(model, params) {
     return new Promise((resolve, reject) => {
-        this.execute_kw(model, 'create', params, (err, value) => {
+        this.execute_kw(model, 'create', [params], (err, value) => {
             if (err) return reject(err)
             resolve(value)
         })
@@ -62,7 +63,7 @@ client.create = function(model, params) {
 
 client.update = function(model, params) {
     return new Promise((resolve, reject) => {
-        this.execute_kw(model, 'write', params, (err, value) => {
+        this.execute_kw(model, 'write', [params], (err, value) => {
             if (err) return reject(err)
             resolve(value)
         })
@@ -71,7 +72,7 @@ client.update = function(model, params) {
 
 client.delete = function(model, params) {
     return new Promise((resolve, reject) => {
-        this.execute_kw(model, 'unlink', params, (err, value) => {
+        this.execute_kw(model, 'unlink', [params], (err, value) => {
             if (err) return reject(err)
             resolve(value)
         })
