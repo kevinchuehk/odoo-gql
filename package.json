@@ -5,7 +5,9 @@
     "bin": "index.js",
     "license": "MIT",
     "scripts": {
-        "dist": "pkg -t node10-linux --out-path dist . "
+        "start": "node index.js",
+        "dist": "pkg -t node10-linux --out-path dist . ",
+        "doc": "graphdoc"
     },
     "dependencies": {
         "apollo-server": "^2.13.0",
@@ -15,6 +17,11 @@
         "odoo-xmlrpc": "^1.0.8"
     },
     "devDependencies": {
+        "@2fd/graphdoc": "^2.4.0",
         "pkg": "^4.4.8"
+    },
+    "graphdoc": {
+        "endpoint": "http://localhost:4000/",
+        "output": "./doc/schema"
     }
 }
