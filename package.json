@@ -22,6 +22,6 @@
     },
     "graphdoc": {
         "endpoint": "http://localhost:4000/",
-        "output": "./doc"
+        "output": "./docs"
     }
 }
